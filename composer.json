@@ -16,6 +16,8 @@
     "require": {
         "jackalope/jackalope-jackrabbit": "dev-master@dev",
         "marmelab/phpcr-api": "dev-master@dev",
+        "symfony/config": "~2.4",
+        "symfony/dependency-injection": "~2.4",
         "symfony/http-kernel": "~2.4"
     },
     "target-dir": "Xabbuh/CrApiBundle"
