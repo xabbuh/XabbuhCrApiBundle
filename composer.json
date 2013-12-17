@@ -1,0 +1,22 @@
+{
+    "name": "xabbuh/cr-api-bundle",
+    "description": "integration marmelab/phpcr-api into the Symfony2 framework",
+    "keywords": ["PHPCR", "PHPCR API", "content repository", "Symfony", "bundle"],
+    "homepage": "https://github.com/xabbuh/XabbuhCrApiBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Christian Flothmann",
+            "homepage": "https://github.com/xabbuh"
+        }
+    ],
+    "autoload": {
+        "psr-0": { "Xabbuh\\CrApiBundle": "" }
+    },
+    "require": {
+        "jackalope/jackalope-jackrabbit": "dev-master@dev",
+        "marmelab/phpcr-api": "dev-master@dev",
+        "symfony/http-kernel": "~2.4"
+    },
+    "target-dir": "Xabbuh/CrApiBundle"
+}
