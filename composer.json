@@ -14,7 +14,7 @@
         "psr-0": { "Xabbuh\\CrApiBundle": "" }
     },
     "require": {
-        "jackalope/jackalope-jackrabbit": "dev-master@dev",
+        "jackalope/jackalope-jackrabbit": "~1.1@dev",
         "marmelab/phpcr-api": "dev-master@dev",
         "symfony/config": "~2.4",
         "symfony/dependency-injection": "~2.4",
