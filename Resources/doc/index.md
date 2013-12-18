@@ -3,20 +3,22 @@ Usage
 
 1. Install XabbuhCrApiBundle using Composer
 
-    Add ``xabbuh/cr-api-bundle`` to the ``require`` section of your project's
-    ``composer.json``:
+    Add ``xabbuh/cr-api-bundle`` and its dependencies to the ``require`` section
+    of your project's ``composer.json``:
 
     ```json
     {
         "require": {
+            "jackalope/jackalope-jackrabbit": "~1.1@dev",
+            "marmelab/phpcr-api": "dev-master",
             "xabbuh/cr-api-bundle": "dev-master@dev"
         }
     }
     ```
 
-    Tell Composer to install the bundle and its dependencies:
+    Install them with Composer:
 
-        php composer.phar update xabbuh/cr-api-bundle
+        php composer.phar install
 
     After Composer has installed XabbuhCrApiBundle you will find it in your
     project's ``vendor/xabbuh/cr-api-bundle`` directory.
