@@ -94,5 +94,26 @@ class XabbuhCrApiExtensionTest extends \PHPUnit_Framework_TestCase
 
         $this->container->has('xabbuh_cr_api.repository.test_repo');
     }
+
+    public function testRepositoryLoaderService()
+    {
+        $configs = array(
+            'xabbuh_cr_api' => array(
+                'repositories' => array(
+                    'testrepo' => array(
+                        'factory' => 'jackalope.jackrabbit',
+                        'parameters' => array(
+                            'jackalope.jackrabbit_uri' => 'http://localhost:8080/server',
+                            'credentials.username'     => 'foobar',
+                            'credentials.password'     => 'foobar',
+                        ),
+                    ),
+                ),
+            ),
+        );
+        $this->extension->load($configs, $this->container);
+
+        $this->assertTrue($this->container->has('xabbuh_cr_api.repository_loader'));
+    }
 }
  

@@ -13,9 +13,11 @@ namespace Xabbuh\CrApiBundle\DependencyInjection;
 
 use PHPCRAPI\API\RepositoryLoader;
 use PHPCRAPI\PHPCR\Collection\RepositoryCollection;
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 /**
  * Dependency Injection extension for the PHPCR API.
@@ -32,9 +34,19 @@ class XabbuhCrApiExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $loader = new XmlFileLoader(
+            $container,
+            new FileLocator(__DIR__.'/../Resources/config')
+        );
+
         if ($config['repositories']) {
-            $loader = new RepositoryLoader($config['repositories']);
-            $this->registerRepositories($container, $loader->getRepositories());
+            $container->setParameter('xabbuh_cr_api.repositories', $config['repositories']);
+            $loader->load('repository_loader.xml');
+
+            /** @var RepositoryLoader $repositoryLoader */
+            $repositoryLoader = $container->get('xabbuh_cr_api.repository_loader');
+
+            $this->registerRepositories($container, $repositoryLoader->getRepositories());
         }
     }
 
