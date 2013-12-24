@@ -92,7 +92,7 @@ class XabbuhCrApiExtensionTest extends \PHPUnit_Framework_TestCase
         );
         $this->extension->load($configs, $this->container);
 
-        $this->container->has('xabbuh_cr_api.repository.test_repo');
+        $this->assertTrue($this->container->has('xabbuh_cr_api.repository.test_repo'));
     }
 
     public function testRepositoryLoaderService()
