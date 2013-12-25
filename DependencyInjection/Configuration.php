@@ -30,9 +30,12 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('xabbuh_cr_api');
 
         $rootNode
+            ->fixXmlConfig('repository', 'repositories')
             ->children()
                 ->arrayNode('repositories')
+                    ->useAttributeAsKey('name')
                     ->prototype('array')
+                        ->fixXmlConfig('parameter')
                         ->children()
                             ->scalarNode('factory')
                                 ->isRequired()

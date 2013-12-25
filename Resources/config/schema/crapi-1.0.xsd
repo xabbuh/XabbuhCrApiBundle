@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns="http://xabbuh.de/schema/dic/xabbuh/crapi"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    targetNamespace="http://xabbuh.de/schema/dic/xabbuh/crapi"
+    elementFormDefault="qualified"
+>
+    <xsd:element name="config" type="config" />
+
+    <xsd:complexType name="config">
+        <xsd:choice minOccurs="1" maxOccurs="unbounded">
+            <xsd:element name="repository" type="repository" />
+        </xsd:choice>
+    </xsd:complexType>
+    
+    <xsd:complexType name="repository">
+        <xsd:choice>
+            <xsd:element name="parameter" type="parameter" minOccurs="0" maxOccurs="unbounded" />
+        </xsd:choice>
+        <xsd:attribute name="name" type="xsd:string" />
+        <xsd:attribute name="factory" type="xsd:string" />
+    </xsd:complexType>
+
+    <xsd:complexType name="parameter">
+        <xsd:simpleContent>
+            <xsd:extension base="xsd:string">
+                <xsd:attribute name="name" type="xsd:string" />
+            </xsd:extension>
+        </xsd:simpleContent>
+    </xsd:complexType>
+</xsd:schema>

@@ -76,5 +76,21 @@ class XabbuhCrApiExtension extends Extension
     {
         return 'xabbuh_cr_api.repository.'.strtr(strtolower($name), ' ', '_');
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNamespace()
+    {
+        return 'http://xabbuh.de/schema/dic/xabbuh/crapi';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getXsdValidationBasePath()
+    {
+        return __DIR__.'/../Resources/config/schema';
+    }
 }
  

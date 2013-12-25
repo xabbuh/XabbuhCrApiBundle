@@ -95,6 +95,56 @@ class XabbuhCrApiExtensionTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->container->has('xabbuh_cr_api.repository.test_repo'));
     }
 
+    public function testConfigurationWithUppercaseLettersInRepoName()
+    {
+        $configs = array(
+            'xabbuh_cr_api' => array(
+                'repositories' => array(
+                    'TestRepo' => array(
+                        'factory' => 'jackalope.jackrabbit',
+                        'parameters' => array(
+                            'jackalope.jackrabbit_uri' => 'http://localhost:8080/server',
+                            'credentials.username'     => 'foobar',
+                            'credentials.password'     => 'foobar',
+                        ),
+                    ),
+                ),
+            ),
+        );
+        $this->extension->load($configs, $this->container);
+
+        $this->assertTrue($this->container->has('xabbuh_cr_api.repository.testrepo'));
+    }
+
+    public function testConfigNormalisation()
+    {
+        $configs = array(
+            'xabbuh_cr_api' => array(
+                'repository' => array(
+                    'name'    => 'testrepo',
+                    'factory' => 'jackalope.jackrabbit',
+                    'parameters' => array(
+                        array(
+                            'name'  => 'jackalope.jackrabbit_uri',
+                            'value' => 'http://localhost:8080/server',
+                        ),
+                        array(
+                            'name'  => 'credentials.username',
+                            'value' => 'foobar',
+                        ),
+                        array(
+                            'name'  => 'credentials.password',
+                            'value' => 'foobar',
+                        ),
+                    ),
+                ),
+            ),
+        );
+        $this->extension->load($configs, $this->container);
+
+        $this->container->has('xabbuh_cr_api.repository.testrepo');
+    }
+
     public function testRepositoryLoaderService()
     {
         $configs = array(
